@@ -1,0 +1,29 @@
+package controllers;
+import models.*;
+
+import javax.servlet.http.*;
+import javax.servlet.*;
+import java.io.*;
+
+public class financeServlet extends HttpServlet{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException,ServletException{
+	
+		HttpSession session = request.getSession();
+
+		String nextPage="index.html";
+
+		
+		 finance f1 =new finance();
+
+		if(f1.getNews()){		
+			
+			session.setAttribute("f1",f1);
+			nextPage="finance.jsp";
+			//nextPage="menu.jsp";
+			System.out.print(session);
+			}
+
+			RequestDispatcher  view = request.getRequestDispatcher(nextPage);
+			view.forward(request,response);
+	}
+}
